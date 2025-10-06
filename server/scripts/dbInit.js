@@ -6,12 +6,14 @@ import path from 'path';
 async function main() {
  // الكود المُعدَّل (سيأخذ القيم الصحيحة من Vercel)
 
+// ... (خطوط الكود الأخرى تبقى كما هي)
 const 
-    DB_HOST = process.env.DB_HOST,
-    DB_USER = process.env.DB_USER,
-    DB_PASSWORD = process.env.DB_PASSWORD,
-    DB_NAME = process.env.DB_DATABASE, // ممكن يكون DB_DATABASE
-    DB_PORT = process.env.DB_PORT
+    DB_HOST = process.env.MYSQL_HOST, // استخدمي MYSQL_HOST من الآن فصاعداً
+    DB_USER = process.env.MYSQL_USER, // استخدمي MYSQL_USER
+    DB_PASSWORD = process.env.MYSQL_ROOT_PASSWORD, // **الأهم:** استخدمي MYSQL_ROOT_PASSWORD
+    DB_NAME = process.env.MYSQL_DATABASE, // استخدمي MYSQL_DATABASE
+    DB_PORT = process.env.MYSQL_PORT // استخدمي MYSQL_PORT
+// ...
   } = process.env;
 
   const sqlPath = path.resolve(process.cwd(), 'server/scripts/schema.sql');
