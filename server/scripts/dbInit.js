@@ -4,12 +4,14 @@ import fs from 'fs';
 import path from 'path';
 
 async function main() {
-  const {
-    DB_HOST = '127.0.0.1',
-    DB_USER = 'root',
-    DB_PASSWORD = '',
-    DB_NAME = 'fantasy_db',
-    DB_PORT = '3306',
+ // الكود المُعدَّل (سيأخذ القيم الصحيحة من Vercel)
+
+const 
+    DB_HOST = process.env.DB_HOST,
+    DB_USER = process.env.DB_USER,
+    DB_PASSWORD = process.env.DB_PASSWORD,
+    DB_NAME = process.env.DB_DATABASE, // ممكن يكون DB_DATABASE
+    DB_PORT = process.env.DB_PORT
   } = process.env;
 
   const sqlPath = path.resolve(process.cwd(), 'server/scripts/schema.sql');
@@ -26,6 +28,12 @@ async function main() {
     password: DB_PASSWORD,
     port: Number(DB_PORT),
     multipleStatements: true,
+
+    
+    // 💡 ضيفي هاد السطرين هنا:
+    ssl: {
+        rejectUnauthorized: false
+    }
   });
 
   try {
